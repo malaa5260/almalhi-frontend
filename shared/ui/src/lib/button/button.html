@@ -1,0 +1,43 @@
+<button [disabled]="disabled() || loading()" class="relative inline-flex items-center justify-center font-medium transition-all duration-200 rounded-xl
+  disabled:opacity-50 disabled:cursor-not-allowed" [class.w-full]="fullWidth()"
+  [class.px-3]="size() === 'sm'"
+  [class.py-2]="size() === 'sm'"
+  [class.text-sm]="size() === 'sm'"
+
+  [class.px-5]="size() === 'md'"
+  [class.py-2.5]="size() === 'md'"
+  [class.text-base]="size() === 'md'"
+
+  [class.px-6]="size() === 'lg'"
+  [class.py-3]="size() === 'lg'"
+  [class.text-lg]="size() === 'lg'"
+
+  [class.bg-[#2F959C]]="variant() === 'primary'"
+  [class.text-white]="variant() === 'primary'"
+  [class.hover:bg-[#247479]]="variant() === 'primary'"
+
+  [class.bg-gray-100]="variant() === 'secondary'"
+  [class.text-gray-800]="variant() === 'secondary'"
+  [class.hover:bg-gray-200]="variant() === 'secondary'"
+
+  [class.border]="variant() === 'outline'"
+  [class.border-[#2F959C]]="variant() === 'outline'"
+  [class.text-[#2F959C]]="variant() === 'outline'"
+  [class.hover:bg-[#2F959C]/10]="variant() === 'outline'"
+
+  [class.text-gray-700]="variant() === 'ghost'"
+  [class.hover:bg-gray-100]="variant() === 'ghost'"
+
+  [class.hover:scale-[1.02]]="!disabled() && !loading()"
+  [class.active:scale-[0.98]]="!disabled() && !loading()"
+  >
+  <!-- Loader -->
+  @if (loading()) {
+  <span class="flex items-center gap-2">
+    <span class="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+    Loading...
+  </span>
+  } @else {
+  {{ label() }}
+  }
+</button>
