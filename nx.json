@@ -34,10 +34,7 @@
       "cache": true,
       "inputs": ["default", "^production"]
     },
-    "@nx/vitest:test": {
-      "cache": true,
-      "inputs": ["default", "^production"]
-    }
+    "@nx/vitest:test": { "cache": true, "inputs": ["default", "^production"] }
   },
   "generators": {
     "@nx/angular:application": {
@@ -50,8 +47,7 @@
       "linter": "eslint",
       "unitTestRunner": "vitest-analog"
     },
-    "@nx/angular:component": {
-      "style": "scss"
-    }
-  }
+    "@nx/angular:component": { "style": "scss" }
+  },
+  "nxCloudId": "69efd1223e031eb15e593d33"
 }
