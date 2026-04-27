@@ -38,7 +38,7 @@ jobs:
 
       # Prepend any command with "nx record --" to record its logs to Nx Cloud
       # - run: npx nx record -- echo Hello World
-      - run: npx nx affected -t lint test build --base=origin/main --head=HEAD
+      - run: npx nx affected -t lint test build --base=origin/master --head=HEAD
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - run: npx nx fix-ci
         if: always()
