@@ -1,0 +1,5 @@
+<div class="rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300"
+  [class.p-0]="padding() === 'none'" [class.p-4]="padding() === 'sm'" [class.p-6]="padding() === 'md'"
+  [class.p-8]="padding() === 'lg'" [class.hover:-translate-y-1]="hover()" [class.hover:shadow-md]="hover()">
+  <ng-content></ng-content>
+</div>

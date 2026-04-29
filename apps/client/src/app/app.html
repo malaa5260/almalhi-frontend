@@ -1,29 +1,19 @@
-<div class="flex flex-col gap-4 p-10">
+<div class="min-h-screen bg-[#F6FDFE] p-10">
+  <almalhi-card [hover]="true">
+    <h2 class="mb-2 text-xl font-bold text-[#1C585C]">Welcome</h2>
+    <p class="mb-5 text-gray-600">
+      This is our first reusable card component.
+    </p>
+    <div class="mx-auto">
+      <almalhi-input label="Name" placeholder="Enter your name" [value]="name()" (valueChange)="onNameChange($event)" />
 
-  <almalhi-button label="Primary" />
-
-  <almalhi-button label="Secondary" variant="secondary" />
-
-  <almalhi-button label="Outline" variant="outline" />
-
-  <almalhi-button label="Ghost" variant="ghost" />
-
-  <almalhi-button label="Loading..." [loading]="true" />
-
-  <almalhi-button label="Full Width" [fullWidth]="true" />
-
-</div><div class="flex flex-col gap-4 p-10">
-
-  <almalhi-button label="Primary" />
-
-  <almalhi-button label="Secondary" variant="secondary" />
-
-  <almalhi-button label="Outline" variant="outline" />
-
-  <almalhi-button label="Ghost" variant="ghost" />
-
-  <almalhi-button label="Loading..." [loading]="true" />
-
-  <almalhi-button label="Full Width" [fullWidth]="true" />
-
+      <p class="mt-4 text-sm text-gray-600">
+        Value: {{ name() }}
+      </p>
+    </div>
+    <div class="flex gap-3 flex-wrap justify-end">
+      <almalhi-button label="Save" variant="primary" (clicked)="save()" icon="fa fa-save" />
+      <almalhi-button label="Cancel" variant="outline" (clicked)="cancel()" icon="fa fa-times" />
+    </div>
+  </almalhi-card>
 </div>
