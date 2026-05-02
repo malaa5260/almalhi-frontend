@@ -1,0 +1,9 @@
+<div class="flex min-h-screen flex-col bg-linear-to-b from-[#F6FDFE] to-white">
+  <almalhi-header [title]="title()" />
+
+  <main class="mx-auto w-full max-w-480 flex-1 px-4 py-8 sm:px-6 lg:px-8">
+    <ng-content />
+  </main>
+
+  <almalhi-footer [title]="title()" />
+</div>
