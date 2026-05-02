@@ -6,3 +6,13 @@
 a ,button {
   @apply cursor-pointer;
 }
+
+/* Styling the scrollbar track (background) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Styling the draggable handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-[#247479] rounded-full border-2 border-transparent bg-clip-padding;
+}
