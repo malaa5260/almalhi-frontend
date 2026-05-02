@@ -6,5 +6,10 @@ export const appRoutes: Routes = [
     loadComponent: () =>
       import('./pages/home/home').then(m => m.Home),
   },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('@almalhi-frontend/auth').then(m => m.AUTH_ROUTES),
+  },
   { path: '**', redirectTo: '', },
 ];

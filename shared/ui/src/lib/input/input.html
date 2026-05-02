@@ -5,8 +5,8 @@
   </label>
   }
 
-  <input [type]="type()" [value]="value()" [placeholder]="placeholder()" [disabled]="disabled()"
-    (input)="onInput($event)"
+  <input [type]="type()" [value]="value" [placeholder]="placeholder()" [disabled]="disabled" (input)="onInput($event)"
+    (blur)="onBlur()"
     class="h-12 w-full rounded-xl border border-gray-200 bg-white px-4 text-sm text-gray-800 outline-none transition duration-200 placeholder:text-gray-400 focus:border-[#2F959C] focus:ring-4 focus:ring-[#2F959C]/10 disabled:cursor-not-allowed disabled:bg-gray-100"
     [class.border-red-500]="error()" [class.focus:border-red-500]="error()" [class.focus:ring-red-500/10]="error()" />
 

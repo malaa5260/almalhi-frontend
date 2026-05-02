@@ -16,7 +16,8 @@
     "paths": {
       "@almalhi-frontend/ui": ["./shared/ui/src/index.ts"],
       "@almalhi-frontend/core": ["./shared/core/src/index.ts"],
-      "@almalhi-frontend/data-access": ["./shared/data-access/src/index.ts"]
+      "@almalhi-frontend/data-access": ["./shared/data-access/src/index.ts"],
+      "@almalhi-frontend/auth": ["./features/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
