@@ -1,5 +1,5 @@
 import { Button, Card, Input } from '@almalhi-frontend/ui';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class ResetPassword {
   email = this.route.snapshot.queryParamMap.get('email') ?? '';
   code = this.route.snapshot.queryParamMap.get('code') ?? '';
 
-  isSubmitting = false;
+  isSubmitting = signal(false);
 
   form = this.fb.group({
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -49,10 +49,10 @@ export class ResetPassword {
 
     if (this.form.invalid || this.confirmPasswordError) return;
 
-    this.isSubmitting = true;
+    this.isSubmitting.set(true);
 
     setTimeout(() => {
-      this.isSubmitting = false;
+      this.isSubmitting.set(false);
 
       console.log({
         email: this.email,

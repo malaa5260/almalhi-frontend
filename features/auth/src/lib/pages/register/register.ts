@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { NonNullableFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Button, Card, Input } from '@almalhi-frontend/ui';
 import { RouterLink } from '@angular/router';
-
+import { AuthService } from '@almalhi-frontend/data-access';
+import { finalize } from 'rxjs';
 @Component({
   selector: 'lib-register',
   imports: [ReactiveFormsModule, RouterLink, Button, Card, Input],
@@ -11,8 +12,9 @@ import { RouterLink } from '@angular/router';
 })
 export class Register {
   private readonly fb = inject(NonNullableFormBuilder);
+  private readonly authService = inject(AuthService);
 
-  isSubmitting = false;
+  isSubmitting = signal(false);
 
   form = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(3)]],
@@ -59,11 +61,19 @@ export class Register {
 
     if (this.form.invalid || this.confirmPasswordError) return;
 
-    this.isSubmitting = true;
+    this.isSubmitting.set(true);
 
-    setTimeout(() => {
-      this.isSubmitting = false;
-      console.log(this.form.getRawValue());
-    }, 800);
+    const payload = this.form.getRawValue();
+
+    this.authService.register(payload)
+      .pipe(finalize(() => this.isSubmitting.set(false)))
+      .subscribe({
+        next: () => {
+          console.log('Registration success');
+        },
+        error: error => {
+          console.error('Registration failed', error);
+        },
+      });
   }
 }

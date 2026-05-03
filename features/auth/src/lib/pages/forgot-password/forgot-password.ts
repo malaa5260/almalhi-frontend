@@ -1,5 +1,5 @@
 import { Button, Card, Input } from '@almalhi-frontend/ui';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { validate } from '@angular/forms/signals';
 import { Router, RouterLink } from '@angular/router';
@@ -14,7 +14,7 @@ export class ForgotPassword {
   private readonly fb = inject(NonNullableFormBuilder);
   private readonly router = inject(Router);
 
-   isSubmitting = false;
+   isSubmitting = signal(false);
 
    form = this.fb.group({
      email: ['', [Validators.required, Validators.email]],
@@ -36,10 +36,10 @@ export class ForgotPassword {
 
     if (this.form.invalid) return;
 
-    this.  isSubmitting = true;
+    this.  isSubmitting.set(true);
 
     setTimeout(() => {
-      this.isSubmitting = false;
+      this.isSubmitting.set(false);
 
       this.router.navigate(['/auth/otp'], {
         queryParams: {

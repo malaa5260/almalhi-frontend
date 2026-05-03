@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Button, Card, Input } from '@almalhi-frontend/ui';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-
+import { AuthService } from '@almalhi-frontend/data-access';
+import { finalize } from 'rxjs';
+import { ToastService } from '@almalhi-frontend/core';
 @Component({
   selector: 'lib-login',
   imports: [ReactiveFormsModule, RouterLink, Button, Card, Input],
@@ -11,8 +13,10 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 })
 export class Login {
   private readonly fb = inject(NonNullableFormBuilder);
+  private readonly authService = inject(AuthService);
+  private toast = inject(ToastService);
 
-  isSubmitting = false;
+  isSubmitting = signal(false);
 
 
   form = this.fb.group({
@@ -42,16 +46,22 @@ export class Login {
   }
 
   login(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
+    this.form.markAllAsTouched();
 
-    this.isSubmitting = true;
+    if (this.form.invalid) return;
 
-    setTimeout(() => {
-      this.isSubmitting = false;
-      console.log(this.form.getRawValue());
-    }, 800);
+    this.isSubmitting.set(true);
+
+    const payload = this.form.getRawValue();
+    this.authService.login(payload)
+    .pipe(finalize(() => this.isSubmitting.set(false)))
+    .subscribe({
+      next: () => {
+        this.toast.success('Login successful');
+      },
+      error: error => {
+        this.toast.error('Invalid email or password');
+      },
+    });
   }
 }

@@ -36,7 +36,7 @@
       <almalhi-input label="Confirm password" type="password" placeholder="Confirm your password"
         formControlName="confirmPassword" [error]="confirmPasswordError" [required]="true" />
 
-      <almalhi-button label="Create account" type="submit" [fullWidth]="true" [loading]="isSubmitting" />
+      <almalhi-button label="Create account" type="submit" [fullWidth]="true" [loading]="isSubmitting()" />
 
       <p class="text-center text-sm text-gray-600">
         Already have an account?
