@@ -46,10 +46,10 @@
     </div>
 
     <form class="grid gap-5" [formGroup]="form" (ngSubmit)="login()">
-    <almalhi-input label="Email" type="email" placeholder="Enter your email" formControlName="email" [error]="emailError" />
+    <almalhi-input label="Email" type="email" placeholder="Enter your email" formControlName="email" [error]="emailError" [required]="true"/>
 
     <almalhi-input label="Password" type="password" placeholder="Enter your password" formControlName="password"
-      [error]="passwordError" />
+      [error]="passwordError" [required]="true" />
 
       <div class="flex items-center justify-between gap-4">
         <label class="flex cursor-pointer items-center gap-2 text-sm text-gray-600">
@@ -58,7 +58,7 @@
           Remember me
         </label>
 
-        <a class="cursor-pointer text-sm font-semibold text-[#2F959C] hover:underline">
+        <a class="cursor-pointer text-sm font-semibold text-[#2F959C] hover:underline" routerLink="/auth/forgot-password">
           Forgot password?
         </a>
       </div>

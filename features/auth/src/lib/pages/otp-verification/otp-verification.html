@@ -1,0 +1,49 @@
+<section class="grid min-h-[calc(100vh-220px)] items-center gap-10 py-10 lg:grid-cols-2">
+  <div class="hidden lg:block">
+    <span class="mb-4 inline-flex rounded-full bg-[#A89333]/10 px-4 py-2 text-sm font-semibold text-[#A89333]">
+      Verification
+    </span>
+
+    <h1 class="text-4xl font-bold leading-tight text-[#1C585C] md:text-5xl">
+      Verify your identity
+    </h1>
+
+    <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+      Enter the 4-digit code sent to your email address to continue resetting your password.
+    </p>
+  </div>
+
+  <almalhi-card padding="lg">
+    <div class="mb-8 text-center">
+      <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#2F959C] text-white">
+        <i class="fa-solid fa-shield-halved text-xl"></i>
+      </div>
+
+      <h2 class="text-2xl font-bold text-[#1C585C]">Enter verification code</h2>
+
+      <p class="mt-2 text-sm text-gray-500">
+        We sent a code to
+        <span class="font-semibold text-[#1C585C]">{{ email || 'your email' }}</span>
+      </p>
+    </div>
+
+    <form class="grid gap-6" (ngSubmit)="verify()">
+      <div class="flex justify-center gap-3">
+        @for (item of otp(); track $index) {
+        <input #otpInput type="text" inputmode="numeric" maxlength="1" [value]="item" (input)="onInput($event, $index)"
+          (keydown)="onKeydown($event, $index)"
+          class="h-14 w-14 rounded-2xl border border-gray-200 bg-white text-center text-xl font-bold text-[#1C585C] outline-none transition focus:border-[#2F959C] focus:ring-4 focus:ring-[#2F959C]/10" />
+        }
+      </div>
+
+      <almalhi-button label="Verify code" type="submit" [fullWidth]="true" [loading]="isSubmitting()" />
+
+      <p class="text-center text-sm text-gray-600">
+        Wrong email?
+        <a routerLink="/auth/forgot-password" class="font-semibold text-[#2F959C] hover:underline">
+          Change email
+        </a>
+      </p>
+    </form>
+  </almalhi-card>
+</section>

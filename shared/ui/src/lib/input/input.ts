@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, forwardRef, input, output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { required } from '@angular/forms/signals';
 
 type InputType = 'text' | 'password' | 'email' | 'number' | 'search' | 'tel' | 'url';
 
@@ -22,6 +23,7 @@ export class Input implements ControlValueAccessor {
   placeholder = input<string>('');
   type = input<InputType>('text');
   error = input<string>('');
+  required = input<boolean>(false);
 
   value = '';
   disabled = false;
