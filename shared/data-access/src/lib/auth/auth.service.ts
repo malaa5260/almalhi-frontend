@@ -1,18 +1,37 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
-import { ForgotPasswordRequest, LoginRequest, RegisterRequest, ResetPasswordRequest, VerifyOtpRequest } from './types/auth-request.types';
+import { Injectable, signal } from '@angular/core';
+import { delay, Observable, of, tap } from 'rxjs';
+import { AuthResponse, ForgotPasswordRequest, LoginRequest, RegisterRequest, ResetPasswordRequest, VerifyOtpRequest } from './types/auth-request.types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly http = inject(HttpClient);
-  private readonly apiUrl = '/api/auth';
+  private readonly accessTokenKey = 'access_token';
 
-  login(payload: LoginRequest): Observable<void> {
+  isAuthenticated = signal(!!localStorage.getItem(this.accessTokenKey));
+
+  login(payload: LoginRequest): Observable<AuthResponse> {
     console.log('login payload', payload);
-    return of(void 0).pipe(delay(800));
+
+    return of({
+      accessToken: 'mock-access-token',
+      refreshToken: 'mock-refresh-token',
+    }).pipe(
+      delay(800),
+      tap(response => {
+        localStorage.setItem(this.accessTokenKey, response.accessToken);
+        this.isAuthenticated.set(true);
+      })
+    );
+  }
+
+  logout(): void {
+    localStorage.removeItem(this.accessTokenKey);
+    this.isAuthenticated.set(false);
+  }
+
+  getAccessToken(): string | null {
+    return localStorage.getItem(this.accessTokenKey);
   }
 
   register(payload: RegisterRequest): Observable<void> {

@@ -26,3 +26,8 @@ export type ResetPasswordRequest = {
   password: string;
   confirmPassword: string;
 };
+
+export type AuthResponse = {
+  accessToken: string;
+  refreshToken?: string;
+};

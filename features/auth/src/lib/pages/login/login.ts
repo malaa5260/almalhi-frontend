@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Button, Card, Input } from '@almalhi-frontend/ui';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@almalhi-frontend/data-access';
@@ -15,6 +15,7 @@ export class Login {
   private readonly fb = inject(NonNullableFormBuilder);
   private readonly authService = inject(AuthService);
   private toast = inject(ToastService);
+  private router = inject(Router);
 
   isSubmitting = signal(false);
 
@@ -54,14 +55,15 @@ export class Login {
 
     const payload = this.form.getRawValue();
     this.authService.login(payload)
-    .pipe(finalize(() => this.isSubmitting.set(false)))
-    .subscribe({
-      next: () => {
-        this.toast.success('Login successful');
-      },
-      error: error => {
-        this.toast.error('Invalid email or password');
-      },
-    });
+      .pipe(finalize(() => this.isSubmitting.set(false)))
+      .subscribe({
+        next: () => {
+          this.toast.success('Login successful');
+          this.router.navigate(['/home']);
+        },
+        error: error => {
+          this.toast.error('Invalid email or password');
+        },
+      });
   }
 }
