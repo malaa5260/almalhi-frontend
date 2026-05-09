@@ -26,6 +26,24 @@
       }
     </nav>
 
+    <div class="hidden items-center gap-2 md:flex">
+      @if (authService.isAuthenticated()) {
+      <button type="button"
+        class="inline-flex items-center gap-2 rounded-xl border border-[#2F959C]/30 px-4 py-2 text-lg font-semibold text-[#1C585C] transition hover:bg-[#2F959C]/10 hover:text-[#2F959C]"
+        (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </button>
+      } @else {
+      <a routerLink="/auth/login" routerLinkActive="bg-[#2F959C] text-white"
+        class="inline-flex items-center gap-2 rounded-xl bg-[#2F959C] px-4 py-2 text-lg font-semibold text-white transition hover:bg-[#1C585C]"
+        (click)="closeMobileMenu()">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Login
+      </a>
+      }
+    </div>
+
     <button type="button"
       class="inline-flex h-10 w-10 items-center justify-center rounded-xl text-[#1C585C] transition hover:bg-[#2F959C]/10 md:hidden"
       [attr.aria-expanded]="isMobileMenuOpen()" aria-label="Toggle menu" (click)="toggleMobileMenu()">
@@ -49,6 +67,21 @@
         <i [class]="item.icon"></i>
         }
         {{ item.label }}
+      </a>
+      }
+      @if (authService.isAuthenticated()) {
+      <button type="button"
+        class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-[#1C585C] transition hover:bg-[#2F959C]/10 hover:text-[#2F959C]"
+        (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </button>
+      } @else {
+      <a routerLink="/auth/login" routerLinkActive="bg-[#2F959C] text-white"
+        class="flex items-center gap-3 rounded-xl bg-[#2F959C] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#1C585C]"
+        (click)="closeMobileMenu()">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Login
       </a>
       }
     </nav>

@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '@almalhi-frontend/data-access';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 type NavItem ={
   label: string;
@@ -14,12 +15,16 @@ type NavItem ={
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header {
+  protected readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
   title = input<string>('Almalhi');
 
   navItems = input<NavItem[]>([
     { label: 'Home', path: '/' },
     { label: 'Services', path: '/services' },
     { label: 'About', path: '/about' },
+    { label: 'Dashboard', path: '/dashboard' },
   ]);
 
   isMobileMenuOpen = signal(false);
@@ -30,5 +35,11 @@ export class Header {
 
   closeMobileMenu(): void {
     this.isMobileMenuOpen.set(false);
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.closeMobileMenu();
+    this.router.navigate(['/home']);
   }
 }

@@ -9,40 +9,114 @@
   <!-- Stats -->
   <div class="grid gap-4 md:grid-cols-3">
     @for (item of stats; track item.title) {
-      <almalhi-card padding="md" [hover]="true">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm text-gray-500">{{ item.title }}</p>
-            <h3 class="text-2xl font-bold text-[#1C585C]">
-              {{ item.value }}
-            </h3>
-          </div>
-
-          <span
-            class="flex h-12 w-12 items-center justify-center rounded-xl text-white"
-            [style.background]="item.color"
-          >
-            <i [class]="item.icon"></i>
-          </span>
+    <almalhi-card padding="md" [hover]="true">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-gray-500">{{ item.title }}</p>
+          <h3 class="text-2xl font-bold text-[#1C585C]">
+            {{ item.value }}
+          </h3>
         </div>
-      </almalhi-card>
+
+        <span class="flex h-12 w-12 items-center justify-center rounded-xl text-white" [style.background]="item.color">
+          <i [class]="item.icon"></i>
+        </span>
+      </div>
+    </almalhi-card>
     }
   </div>
 
   <!-- Activity -->
-  <almalhi-card padding="lg">
-    <h2 class="mb-4 text-xl font-bold text-[#1C585C]">
-      Recent Activity
-    </h2>
+  <div class="grid gap-4 md:grid-cols-1">
+    <almalhi-card padding="lg">
+      <h2 class="mb-4 text-xl font-bold text-[#1C585C]">
+        Recent Activity
+      </h2>
 
-    <div class="space-y-3">
-      @for (item of activities; track item.title) {
+      <div class="space-y-3">
+        @for (item of activities; track item.title) {
         <div class="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
           <span class="text-gray-700">{{ item.title }}</span>
           <span class="text-sm text-gray-400">{{ item.time }}</span>
         </div>
-      }
-    </div>
-  </almalhi-card>
+        }
+      </div>
+    </almalhi-card>
+  </div>
 
+  <!-- Requests Orders by Year -->
+  <div class="grid gap-4 md:grid-cols-1">
+    <almalhi-card padding="lg">
+      <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-[#1C585C]">Requests Orders by Year</h2>
+          <p class="text-sm text-gray-500">All requests and orders grouped by year</p>
+        </div>
+        <span
+          class="inline-flex w-fit items-center gap-2 rounded-lg bg-[#EAF5F6] px-3 py-2 text-sm font-semibold text-[#1C585C]"
+        >
+          <i class="fa-solid fa-calendar-days"></i>
+          Yearly
+        </span>
+      </div>
+
+      <div class="overflow-hidden rounded-xl border border-gray-100">
+        <div class="grid grid-cols-4 bg-gray-50 px-4 py-3 text-sm font-semibold text-[#1C585C]">
+          <span>Year</span>
+          <span class="text-right">Requests</span>
+          <span class="text-right">Orders</span>
+          <span class="text-right">Total</span>
+        </div>
+
+        <div class="divide-y divide-gray-100">
+          @for (item of requestOrdersByYear; track item.year) {
+          <div class="px-4 py-4">
+            <div class="grid grid-cols-4 items-center gap-3 text-sm">
+              <span class="font-semibold text-gray-800">{{ item.year }}</span>
+              <span class="text-right text-gray-700">{{ item.requests }}</span>
+              <span class="text-right text-gray-700">{{ item.orders }}</span>
+              <span class="text-right font-bold text-[#1C585C]">{{ item.total }}</span>
+            </div>
+
+            <div class="mt-3 h-2 overflow-hidden rounded-full bg-gray-100">
+              <div
+                class="h-full rounded-full bg-[#2F959C]"
+                [style.width.%]="item.total / maxRequestOrdersTotal * 100"
+              ></div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </almalhi-card>
+  </div>
+
+  <!-- Sales Data -->
+  <div class="grid gap-4 md:grid-cols-2">
+    <almalhi-card padding="lg">
+      <h2 class="mb-4 text-xl font-bold text-[#1C585C]">Sales Data</h2>
+      <!-- Placeholder for sales chart -->
+      <div class="bg-gray-100  p-4 rounded-xl">
+        @for (item of salesData.labels; track $index; let last = $last) {
+        <div class="flex items-center justify-between" [class.mb-2]="!last">
+          <span>{{ item }}</span>
+          <span>{{ salesData.datasets[0].data[$index] }}</span>
+        </div>
+        }
+      </div>
+    </almalhi-card>
+
+    <almalhi-card padding="lg">
+      <h2 class="mb-4 text-xl font-bold text-[#1C585C]">User Growth</h2>
+      <!-- Placeholder for user growth chart -->
+      <div class="bg-gray-100  p-4 rounded-xl">
+        @for (item of userGrowthData.labels; track $index; let last = $last) {
+        <div class="flex items-center justify-between" [class.mb-2]="!last">
+          <span>{{ item }}</span>
+          <span>{{ userGrowthData.datasets[0].data[$index] }}</span>
+        </div>
+        }
+      </div>
+    </almalhi-card>
+  </div>
 </div>
