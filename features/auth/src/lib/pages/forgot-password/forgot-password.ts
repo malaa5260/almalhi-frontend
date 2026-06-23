@@ -36,7 +36,7 @@ export class ForgotPassword {
 
     if (this.form.invalid) return;
 
-    this.  isSubmitting.set(true);
+    this.isSubmitting.set(true);
 
     setTimeout(() => {
       this.isSubmitting.set(false);
