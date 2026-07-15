@@ -190,3 +190,8 @@ shared/data-access -> no app, feature, UI, or core dependencies
 ```
 
 When adding new code, prefer moving user-facing business areas into `features/<name>`, reusable components into `shared/ui`, cross-cutting behavior into `shared/core`, and API-facing state/services/types into `shared/data-access`.
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->
