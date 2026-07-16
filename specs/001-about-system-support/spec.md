@@ -8,6 +8,12 @@
 
 **Input**: User description: "create about page that contain information about system and how system support"
 
+## Clarifications
+
+### Session 2026-07-16
+
+- Q: Should system support be informational only, or include a visible support/contact path? -> A: Include contact path
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Learn What The System Does (Priority: P1)
@@ -34,13 +40,13 @@ target users, and primary benefits without using any other page.
 
 A user reads the About page to understand how the system supports their work, including
 account access, protected dashboard usage, reusable platform features, and future
-service growth.
+service growth, and where to continue when they need support contact information.
 
 **Why this priority**: The user specifically requested information about how the system
 supports users, so the page must explain practical support in plain language.
 
 **Independent Test**: A user can identify how the system supports account access,
-security, dashboard visibility, and future business workflows.
+security, dashboard visibility, future business workflows, and support contact access.
 
 **Acceptance Scenarios**:
 
@@ -50,6 +56,8 @@ security, dashboard visibility, and future business workflows.
 2. **Given** an existing user wants reassurance about protected access, **When** they
    read the support section, **Then** they understand that dashboard access is limited
    to authenticated users.
+3. **Given** a user needs help beyond the page content, **When** they read the support
+   section, **Then** they can find a visible path to support contact information.
 
 ---
 
@@ -80,6 +88,8 @@ step without needing browser back navigation.
 - If a user is already signed in, the page remains readable and does not block access.
 - If support content is longer than one screen, users can still scan the main sections
   quickly and reach navigation actions.
+- If a user needs personal assistance, the page provides a support/contact path without
+  requiring the user to submit personal information on the About page itself.
 - If the user is on a small screen, all content remains readable without horizontal
   scrolling.
 
@@ -101,9 +111,11 @@ step without needing browser back navigation.
   service expansion.
 - **FR-006**: System MUST provide clear next-step navigation from the About page to
   relevant public or account-related pages.
-- **FR-007**: System MUST present content in a way that is readable and scannable on
+- **FR-007**: System MUST include a visible support/contact path for users who need help
+  beyond the informational About content.
+- **FR-008**: System MUST present content in a way that is readable and scannable on
   desktop and mobile screen sizes.
-- **FR-008**: System MUST avoid collecting user input or personal data on the About page.
+- **FR-009**: System MUST avoid collecting user input or personal data on the About page.
 
 ### Architecture and Boundary Requirements
 
@@ -131,14 +143,17 @@ step without needing browser back navigation.
   access and protected dashboard usage, after reading the support section.
 - **SC-004**: Users can find a relevant next action from the About page in under
   30 seconds.
-- **SC-005**: The page remains readable without horizontal scrolling on common mobile
+- **SC-005**: Users can locate the support/contact path in under 30 seconds after
+  reaching the support section.
+- **SC-006**: The page remains readable without horizontal scrolling on common mobile
   and desktop viewport sizes.
 
 ## Assumptions
 
 - The About page is a public informational page, not a protected dashboard feature.
-- "System support" means explaining how the Almalhi system supports users and workflows,
-  not live help desk chat or ticket submission.
+- "System support" includes explaining how the Almalhi system supports users and
+  workflows plus a visible support/contact path, but not an embedded live chat or ticket
+  submission form.
 - The page will use existing site navigation patterns so users can continue to home,
   login, or registration journeys.
 - The page content is static for this feature and does not require backend data.
