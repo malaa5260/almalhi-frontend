@@ -50,10 +50,14 @@ Open `/about` and verify:
 - At least three capabilities or benefits are visible.
 - The support section explains protected access, dashboard visibility, and support
   contact access.
-- A support/contact path is visible and does not require submitting personal data on the
-  About page.
-- Next actions let users continue to public or account-related journeys.
-- The page remains readable on desktop and mobile widths without horizontal scrolling.
+- A `mailto:support@almalhi.com` support/contact path is visible and does not require
+  submitting personal data on the About page.
+- Next actions let users continue to `/home`, `/auth/login`, `/auth/register`, and
+  `mailto:support@almalhi.com`.
+- Direct navigation to `/about` displays the page content without authentication.
+- Signed-in users can read `/about` without being blocked or redirected away.
+- The page remains readable at 375px, 768px, and 1280px viewport widths without
+  horizontal scrolling.
 
 ## Related Design Artifacts
 

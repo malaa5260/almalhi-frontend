@@ -13,6 +13,11 @@
 ### Session 2026-07-16
 
 - Q: Should system support be informational only, or include a visible support/contact path? -> A: Include contact path
+- Q: What support/contact destination should the static About page expose? -> A: Use a
+  visible email action with `mailto:support@almalhi.com`; do not add a contact form or
+  new contact route for this feature.
+- Q: Which viewport sizes define the required desktop and mobile visual review? -> A:
+  Review at 375px mobile, 768px tablet, and 1280px desktop widths.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -90,8 +95,8 @@ step without needing browser back navigation.
   quickly and reach navigation actions.
 - If a user needs personal assistance, the page provides a support/contact path without
   requiring the user to submit personal information on the About page itself.
-- If the user is on a small screen, all content remains readable without horizontal
-  scrolling.
+- If the user is on a 375px mobile, 768px tablet, or 1280px desktop viewport, all
+  content remains readable without horizontal scrolling.
 
 ## Requirements *(mandatory)*
 
@@ -112,9 +117,10 @@ step without needing browser back navigation.
 - **FR-006**: System MUST provide clear next-step navigation from the About page to
   relevant public or account-related pages.
 - **FR-007**: System MUST include a visible support/contact path for users who need help
-  beyond the informational About content.
-- **FR-008**: System MUST present content in a way that is readable and scannable on
-  desktop and mobile screen sizes.
+  beyond the informational About content, implemented as an email action to
+  `mailto:support@almalhi.com`.
+- **FR-008**: System MUST present content in a way that is readable and scannable at
+  375px mobile, 768px tablet, and 1280px desktop viewport widths.
 - **FR-009**: System MUST avoid collecting user input or personal data on the About page.
 
 ### Architecture and Boundary Requirements
@@ -145,8 +151,8 @@ step without needing browser back navigation.
   30 seconds.
 - **SC-005**: Users can locate the support/contact path in under 30 seconds after
   reaching the support section.
-- **SC-006**: The page remains readable without horizontal scrolling on common mobile
-  and desktop viewport sizes.
+- **SC-006**: The page remains readable without horizontal scrolling at 375px mobile,
+  768px tablet, and 1280px desktop viewport widths.
 
 ## Assumptions
 
@@ -154,6 +160,8 @@ step without needing browser back navigation.
 - "System support" includes explaining how the Almalhi system supports users and
   workflows plus a visible support/contact path, but not an embedded live chat or ticket
   submission form.
+- The support/contact path is a static `mailto:support@almalhi.com` email action for this
+  feature.
 - The page will use existing site navigation patterns so users can continue to home,
   login, or registration journeys.
 - The page content is static for this feature and does not require backend data.
@@ -162,7 +170,7 @@ step without needing browser back navigation.
 
 - Affected Nx projects: client
 - Required checks: `npx nx test client`, `npx nx lint client`, `npx nx build client`
-- Required screenshots or visual verification: desktop and mobile visual review of the
-  About page
+- Required screenshots or visual verification: visual review of the About page at 375px,
+  768px, and 1280px viewport widths
 - Known validation limits: final implementation may adjust checks if the page is moved
   into a feature library during planning

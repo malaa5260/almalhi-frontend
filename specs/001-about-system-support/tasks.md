@@ -38,7 +38,7 @@
 **CRITICAL**: No user story work can begin until this phase is complete.
 
 - [ ] T004 Add a public lazy-loaded `/about` route without `canActivate` in `apps/client/src/app/app.routes.ts`
-- [ ] T005 [P] Add route coverage asserting `/about` exists and has no guard in `apps/client/src/app/app.spec.ts`
+- [ ] T005 [P] Add route coverage asserting `/about` exists, has no guard, supports direct navigation, and does not block signed-in users in `apps/client/src/app/app.spec.ts`
 - [ ] T006 [P] Create the About page component test scaffold in `apps/client/src/app/pages/about/about.spec.ts`
 - [ ] T007 Create the standalone About page component shell with `ChangeDetectionStrategy.OnPush` in `apps/client/src/app/pages/about/about.ts`
 - [ ] T008 Create the About page template shell with top-level semantic sections in `apps/client/src/app/pages/about/about.html`
@@ -76,13 +76,13 @@
 
 ### Tests for User Story 2
 
-- [ ] T014 [P] [US2] Add component tests for support items, protected dashboard wording, visible support/contact action, and absence of form fields in `apps/client/src/app/pages/about/about.spec.ts`
+- [ ] T014 [P] [US2] Add component tests for support items, protected dashboard wording, `mailto:support@almalhi.com` contact action, and absence of form fields in `apps/client/src/app/pages/about/about.spec.ts`
 
 ### Implementation for User Story 2
 
 - [ ] T015 [US2] Define local readonly presentation models for support items and contact action in `apps/client/src/app/pages/about/about.ts`
 - [ ] T016 [US2] Implement the system support region covering account entry, protected access, dashboard visibility, and future service expansion in `apps/client/src/app/pages/about/about.html`
-- [ ] T017 [US2] Implement a visible support/contact path that does not collect input or personal data in `apps/client/src/app/pages/about/about.html`
+- [ ] T017 [US2] Implement a visible `mailto:support@almalhi.com` support/contact path that does not collect input or personal data in `apps/client/src/app/pages/about/about.html`
 - [ ] T018 [US2] Keep auth copy aligned with public About access and protected dashboard rules in `apps/client/src/app/pages/about/about.html`
 
 **Checkpoint**: User Stories 1 and 2 both work independently.
@@ -97,13 +97,13 @@
 
 ### Tests for User Story 3
 
-- [ ] T019 [P] [US3] Add component tests for next-action labels and hrefs to public/account-related routes in `apps/client/src/app/pages/about/about.spec.ts`
+- [ ] T019 [P] [US3] Add component tests for next-action labels and hrefs to `/home`, `/auth/login`, `/auth/register`, and `mailto:support@almalhi.com` in `apps/client/src/app/pages/about/about.spec.ts`
 
 ### Implementation for User Story 3
 
 - [ ] T020 [US3] Define local readonly presentation models for next actions in `apps/client/src/app/pages/about/about.ts`
-- [ ] T021 [US3] Implement next-action links for login, registration, support/contact, and home journeys in `apps/client/src/app/pages/about/about.html`
-- [ ] T022 [US3] Ensure next-action layout remains readable and reachable after long content on mobile and desktop in `apps/client/src/app/pages/about/about.html`
+- [ ] T021 [US3] Implement next-action links for `/auth/login`, `/auth/register`, `mailto:support@almalhi.com`, and `/home` journeys in `apps/client/src/app/pages/about/about.html`
+- [ ] T022 [US3] Ensure next-action layout remains readable and reachable after long content at 375px, 768px, and 1280px viewport widths in `apps/client/src/app/pages/about/about.html`
 
 **Checkpoint**: All user stories are independently functional.
 
@@ -115,10 +115,10 @@
 
 - [ ] T023 [P] Review About page content against the UI contract in `specs/001-about-system-support/contracts/about-page-ui.md`
 - [ ] T024 [P] Review UX requirements checklist findings before final delivery in `specs/001-about-system-support/checklists/ux.md`
-- [ ] T025 Run `npx nx test client` from the repository root and record the result in `specs/001-about-system-support/quickstart.md`
-- [ ] T026 Run `npx nx lint client` from the repository root and record the result in `specs/001-about-system-support/quickstart.md`
-- [ ] T027 Run `npx nx build client` from the repository root and record the result in `specs/001-about-system-support/quickstart.md`
-- [ ] T028 Perform desktop and mobile visual review for `/about` and record findings in `specs/001-about-system-support/quickstart.md`
+- [ ] T025 Run `npx nx test client` from the repository root using expectations in `specs/001-about-system-support/quickstart.md`
+- [ ] T026 Run `npx nx lint client` from the repository root using expectations in `specs/001-about-system-support/quickstart.md`
+- [ ] T027 Run `npx nx build client` from the repository root using expectations in `specs/001-about-system-support/quickstart.md`
+- [ ] T028 Perform visual review for `/about` at 375px, 768px, and 1280px viewport widths using expectations in `specs/001-about-system-support/quickstart.md`
 
 ---
 
@@ -143,7 +143,7 @@
 
 - Write or update story-specific tests before implementation.
 - Define local presentation models in `about.ts` before binding them in `about.html`.
-- Keep support/contact behavior static and free of forms, backend calls, guards, or personal-data collection.
+- Keep support/contact behavior static as `mailto:support@almalhi.com` and free of forms, backend calls, guards, or personal-data collection.
 - Finish each story checkpoint before treating that story as complete.
 
 ### Parallel Opportunities

@@ -28,15 +28,19 @@ API contract.
 4. **System support region**
    - Explains how the system supports user workflows.
    - Includes protected access and dashboard visibility.
-   - Provides a visible support/contact path.
+   - Provides a visible support/contact email action with
+     `mailto:support@almalhi.com`.
 
 5. **Next actions region**
    - Provides navigation to relevant public or account-related journeys.
+   - Includes `/home`, `/auth/login`, `/auth/register`, and
+     `mailto:support@almalhi.com`.
    - Does not require browser back navigation to continue.
 
 ## Non-Functional Requirements
 
-- Page content remains readable on common desktop and mobile viewport sizes.
+- Page content remains readable at 375px mobile, 768px tablet, and 1280px desktop
+  viewport widths.
 - Page does not collect user input or personal data.
 - Support/contact path is discoverable from the support section within 30 seconds.
 - Page uses existing site navigation patterns and visual language.
@@ -44,7 +48,9 @@ API contract.
 ## Test Expectations
 
 - Route configuration includes a public `/about` route.
+- Direct navigation to `/about` displays the page content without authentication.
+- Signed-in users can read `/about` without being blocked or redirected away.
 - Page renders the system purpose, at least three capabilities, support/contact path, and
   next actions.
 - No form fields are present on the About page.
-- Visual review verifies no horizontal scrolling on mobile and desktop widths.
+- Visual review verifies no horizontal scrolling at 375px, 768px, and 1280px widths.
