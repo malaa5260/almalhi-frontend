@@ -1,0 +1,199 @@
+<article class="space-y-14">
+  <section
+    aria-labelledby="about-title"
+    class="grid items-center gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)]"
+  >
+    <div class="min-w-0">
+      <span
+        class="mb-4 inline-flex items-center gap-2 rounded-lg bg-[#2F959C]/10 px-3 py-2 text-sm font-semibold text-[#1C585C]"
+      >
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+        System overview
+      </span>
+
+      <h1
+        id="about-title"
+        class="max-w-4xl text-4xl font-bold leading-tight text-[#1C585C] md:text-5xl"
+      >
+        {{ hero.title }}
+      </h1>
+
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-gray-700">
+        {{ hero.summary }}
+      </p>
+
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a
+          [href]="hero.primaryAction.href"
+          class="inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#2F959C] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1C585C] focus:outline-none focus:ring-2 focus:ring-[#2F959C] focus:ring-offset-2"
+        >
+          <i [class]="hero.primaryAction.icon" aria-hidden="true"></i>
+          {{ hero.primaryAction.label }}
+        </a>
+        <a
+          [href]="hero.secondaryAction.href"
+          class="inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#2F959C]/30 px-5 py-3 text-sm font-semibold text-[#1C585C] transition hover:bg-[#2F959C]/10 focus:outline-none focus:ring-2 focus:ring-[#2F959C] focus:ring-offset-2"
+        >
+          <i [class]="hero.secondaryAction.icon" aria-hidden="true"></i>
+          {{ hero.secondaryAction.label }}
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="min-w-0 rounded-lg border border-[#2F959C]/20 bg-white p-6 shadow-sm"
+      aria-label="System access summary"
+    >
+      <div class="flex items-center gap-4">
+        <span
+          class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-[#A89333]/15 text-2xl text-[#A89333]"
+        >
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        </span>
+        <div class="min-w-0">
+          <p class="text-sm font-semibold uppercase text-gray-500">
+            Public information
+          </p>
+          <p class="mt-1 text-xl font-bold text-[#1C585C]">
+            About is open. Dashboard remains protected.
+          </p>
+        </div>
+      </div>
+      <p class="mt-5 text-base leading-7 text-gray-600">
+        Anyone can read this page directly. Private dashboard features stay behind
+        authenticated access.
+      </p>
+    </div>
+  </section>
+
+  <section aria-labelledby="audience-title" class="space-y-5">
+    <div class="max-w-3xl">
+      <h2 id="audience-title" class="text-2xl font-bold text-[#1C585C]">
+        Who the system supports
+      </h2>
+      <p class="mt-2 leading-7 text-gray-600">
+        The page speaks to public visitors and account users without changing access
+        rules for protected areas.
+      </p>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      @for (audience of audiences; track audience.title) {
+      <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+        <span
+          class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-[#2F959C]/10 text-[#2F959C]"
+        >
+          <i [class]="audience.icon" aria-hidden="true"></i>
+        </span>
+        <h3 class="text-lg font-bold text-[#1C585C]">{{ audience.title }}</h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          {{ audience.description }}
+        </p>
+      </div>
+      }
+    </div>
+  </section>
+
+  <section aria-labelledby="capabilities-title" class="space-y-5">
+    <div class="max-w-3xl">
+      <h2 id="capabilities-title" class="text-2xl font-bold text-[#1C585C]">
+        Core capabilities
+      </h2>
+      <p class="mt-2 leading-7 text-gray-600">
+        These benefits explain what users can expect from the current system
+        foundation and its planned growth.
+      </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      @for (capability of capabilities; track capability.title) {
+      <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+        <div class="flex items-start gap-4">
+          <span
+            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#A89333]/10 text-[#A89333]"
+          >
+            <i [class]="capability.icon" aria-hidden="true"></i>
+          </span>
+          <div class="min-w-0">
+            <h3 class="text-lg font-bold text-[#1C585C]">
+              {{ capability.title }}
+            </h3>
+            <p class="mt-2 leading-7 text-gray-600">
+              {{ capability.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+
+  <section
+    aria-labelledby="support-title"
+    class="space-y-6 rounded-lg border border-[#2F959C]/20 bg-[#F6FDFE] p-5 sm:p-7"
+  >
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div class="max-w-3xl">
+        <h2 id="support-title" class="text-2xl font-bold text-[#1C585C]">
+          How the system supports users
+        </h2>
+        <p class="mt-2 leading-7 text-gray-600">
+          Support starts with clear access paths, protected dashboard rules, and a
+          simple contact option when users need help beyond this page.
+        </p>
+      </div>
+
+      <a
+        href="mailto:support@almalhi.com"
+        class="inline-flex min-h-11 w-fit items-center gap-2 rounded-lg bg-[#1C585C] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2F959C] focus:outline-none focus:ring-2 focus:ring-[#1C585C] focus:ring-offset-2"
+      >
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        Email Support
+      </a>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      @for (item of supportItems; track item.title) {
+      <div class="rounded-lg bg-white p-5 shadow-sm">
+        <div class="flex items-start gap-4">
+          <span
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#2F959C]/10 text-[#2F959C]"
+          >
+            <i [class]="item.icon" aria-hidden="true"></i>
+          </span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-[#1C585C]">{{ item.title }}</h3>
+            <p class="mt-2 text-sm leading-6 text-gray-600">
+              {{ item.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+
+  <section aria-labelledby="next-actions-title" class="space-y-5">
+    <div class="max-w-3xl">
+      <h2 id="next-actions-title" class="text-2xl font-bold text-[#1C585C]">
+        Continue from here
+      </h2>
+      <p class="mt-2 leading-7 text-gray-600">
+        Choose a public or account-related path without relying on browser back
+        navigation.
+      </p>
+    </div>
+
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      @for (action of nextActions; track action.href) {
+      <a
+        [href]="action.href"
+        [class]="'inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border px-4 py-3 text-center text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-[#2F959C] focus:ring-offset-2 ' + action.className"
+      >
+        <i [class]="action.icon" aria-hidden="true"></i>
+        {{ action.label }}
+      </a>
+      }
+    </div>
+  </section>
+</article>

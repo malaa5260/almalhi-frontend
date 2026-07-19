@@ -14,6 +14,11 @@ export const appRoutes: Routes = [
       import('./pages/dashboard/dashboard').then(m => m.Dashboard),
   },
   {
+    path: 'about',
+    loadComponent: () =>
+      import('./pages/about/about').then(m => m.About),
+  },
+  {
     path: 'auth',
     loadChildren: () =>
       import('@almalhi-frontend/auth').then(m => m.AUTH_ROUTES),

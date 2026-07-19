@@ -2,6 +2,7 @@
 
 # compiled output
 dist
+build
 tmp
 out-tsc
 
@@ -32,6 +33,8 @@ node_modules
 npm-debug.log
 yarn-error.log
 testem.log
+*.log
+.env*
 /typings
 
 # System Files
