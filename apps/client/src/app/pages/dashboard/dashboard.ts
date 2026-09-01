@@ -8,10 +8,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Dashboard {
-  stats = [
+  readonly userCount = 5000;
+
+  readonly stats = [
     {
       title: 'Users',
-      value: 1200,
+      value: this.userCount,
       icon: 'fa-solid fa-users',
       color: '#2F959C',
     },
